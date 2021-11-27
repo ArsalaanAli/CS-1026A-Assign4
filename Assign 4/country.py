@@ -14,3 +14,13 @@ class Country:
         return self.area
     def getContinent(self):
         return self.continent
+
+    #setter methods
+    def setName(self, newName):
+        self.name = newName
+    def setPopulation(self, newPop):
+        self.pop = newPop
+    def setArea(self, newArea):
+        self.area = newArea
+    def setContinent(self, newContinent):
+        self.continent = newContinent
