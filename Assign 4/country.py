@@ -16,11 +16,20 @@ class Country:
         return self.continent
 
     #setter methods
-    def setName(self, newName):
-        self.name = newName
     def setPopulation(self, newPop):
         self.pop = newPop
     def setArea(self, newArea):
         self.area = newArea
     def setContinent(self, newContinent):
         self.continent = newContinent
+
+    def __repr__(self):
+        return self.name +" (pop: " + str(self.pop) +  ", size: " + str(self.area) + ") in " + self.continent
+    
+x = Country("Canada", 1234, 132423, "South_America")
+print(x.getName(), x.getArea(), x.getContinent(), x.getPopulation())
+x.setArea(123)
+x.setContinent("North_America")
+x.setPopulation(1231231)
+print(x.getName(), x.getArea(), x.getContinent(), x.getPopulation())
+print(repr(x))
