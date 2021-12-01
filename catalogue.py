@@ -13,41 +13,52 @@ class CountryCatalogue:
             tempArea = country[3].strip("\n")
             tempCountry = Country(tempName, tempPop, tempArea, tempContinent)
             countryCat[tempName] = tempCountry
-        print(countryCat)
-
+    
     def setPopulationOfCountry(self, countryName, value):
-        if countryName in countryCat:
-            countryCat[countryName].setPopulation(value)
+        if countryName in self.countryCat:
+            self.countryCat[countryName].setPopulation(value)
         else:
             print(countryName, "is not in the Country Catalogue")
     def setAreaOfCountry(self, countryName, value):
-        if countryName in countryCat:
-            countryCat[countryName].setArea(value)
+        if countryName in self.countryCat:
+            self.countryCat[countryName].setArea(value)
         else:
             print(countryName, "is not in the Country Catalogue")
     def setContinentOfCountry(self, countryName, value):
-        if countryName in countryCat:
-            countryCat[countryName].setContinent(value)
+        if countryName in self.countryCat:
+            self.countryCat[countryName].setContinent(value)
         else:
             print(countryName, "is not in the Country Catalogue")
 
     def findCountry(self, country):
-        if country in countryCat.values():
+        if country in self.countryCat.values():
             return country
         else:
             return None
 
-
-
     def addCountry(self, countryName, pop, area, cont):
         if countryName in self.countryCat:
             return False
-        newCountry = Country(countryName, pop, area, continent)
+        newCountry = Country(countryName, pop, area, cont)
         self.countryCat[countryName] = newCountry
+        return True
 
     def printCountryCatalogue(self):
         for country in self.countryCat.keys():
             print(self.countryCat[country])
+    def saveCountryCatalogue(self, fName):
+        try:
+            newFile = open(fName, "w")
+            newFile.write("Country|Continent|Population|Area\n")
+            total = 0
+            for country in self.countryCat.keys():
+                cur = self.countryCat[country]
+                newFile.write(cur.getName() + "|" + cur.getContinent() + "|" + cur.getPopulation() + "|" + cur.getArea() + "\n")
+                total+=1
+            return total
+        except IOError:
+            return -1
         
 x = CountryCatalogue("data.txt")
 x.printCountryCatalogue()
+x.saveCountryCatalogue("savedFile.txt")
