@@ -51,7 +51,7 @@ class CountryCatalogue:
             newFile = open(fName, "w")
             newFile.write("Country|Continent|Population|Area\n")
             total = 0
-            for country in self.countryCat.keys():
+            for country in sorted(self.countryCat.keys()):
                 cur = self.countryCat[country]
                 newFile.write(cur.getName() + "|" + cur.getContinent() + "|" + cur.getPopulation() + "|" + cur.getArea() + "\n")
                 total+=1
@@ -61,4 +61,6 @@ class CountryCatalogue:
         
 x = CountryCatalogue("data.txt")
 x.printCountryCatalogue()
-x.saveCountryCatalogue("savedFile.txt")
+x.addCountry("Narnia", "asd", "asd", "asd")
+x.printCountryCatalogue()
+print(x.saveCountryCatalogue("savedFile.txt"))
